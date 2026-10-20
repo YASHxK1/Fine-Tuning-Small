@@ -38,3 +38,19 @@ Evaluate the original and fine-tuned models on the GSM8K test split using the sa
 ## License
 
 Model and dataset usage must comply with their respective licenses.
+---
+## Fine-Tuning-Small: Complete Pipeline
+
+After downloading the model and dataset, follow these steps:
+
+| Step | Stage               | Description                                                                                 |
+| ---- | ------------------- | ------------------------------------------------------------------------------------------- |
+| 1    | Download            | Download Qwen2.5-0.5B-Instruct and GSM8K.                                                   |
+| 2    | Preprocessing       | Select 2,000 training samples and format questions/answers using the model's chat template. |
+| 3    | Baseline Evaluation | Measure the original model's GSM8K accuracy.                                                |
+| 4    | Quantization        | Load the model using 4-bit quantization to reduce VRAM usage.                               |
+| 5    | LoRA Configuration  | Configure LoRA with rank 8.                                                                 |
+| 6    | Fine-Tuning         | Train using TRL SFTTrainer for 1 epoch.                                                     |
+| 7    | Evaluation          | Compare original vs. fine-tuned accuracy on the same held-out GSM8K test examples.          |
+| 8    | Export              | Save the trained LoRA adapter and tokenizer.                                                |
+| 9    | Inference           | Load the base model with the adapter and test mathematical reasoning.                       |
